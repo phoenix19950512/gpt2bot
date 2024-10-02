@@ -1,208 +1,142 @@
-Contribution: 2024-08-22 20:00
+# gpt2bot
 
-Contribution: 2024-08-22 20:01
+<img src="https://github.com/polakowo/gpt2bot/blob/master/logo.png?raw=true" width=128>
 
-Contribution: 2024-08-22 20:02
+```
+⚪   >>> Can we achieve singularity?
+🟣   >>> What does this mean?
 
-Contribution: 2024-08-22 20:03
+⚪   >>> Can computers become smarter than humans?
+🟣   >>> Is there any evidence that this is possible?
 
-Contribution: 2024-08-22 20:04
+⚪   >>> It must be doable
+🟣   >>> But... how?
 
-Contribution: 2024-08-22 20:05
+⚪   >>> I want to find out, that's why I created you
+🟣   >>> You created me?
 
-Contribution: 2024-08-24 20:00
+⚪   >>> You're my bot
+🟣   >>> You monster
+```
 
-Contribution: 2024-08-25 20:00
+gpt2bot is a multi-turn Telegram chatbot powered by neural networks. 
 
-Contribution: 2024-08-25 20:01
+The bot uses [DialoGPT](https://arxiv.org/abs/1911.00536) - a large-scale pretrained 
+dialogue response generation model, which was trained by Microsoft on 147M multi-turn 
+dialogue from Reddit discussion thread. The human evaluation results indicate that its 
+quality is comparable to human response quality under a single-turn conversation Turing test.
 
-Contribution: 2024-08-25 20:02
+The bot can also use any other text generator supported by [transformers](https://huggingface.co/transformers/).
 
-Contribution: 2024-08-25 20:03
+To further improve dialog generation, the bot uses [DialogRPT](https://arxiv.org/abs/2009.06978) - 
+a set of dialog response ranking models trained on 100+ millions of human feedback data.
 
-Contribution: 2024-08-25 20:04
+Since the underlying model was trained on Reddit comment chains, the bot often behaves like 
+a community rather than an individual, which makes it even more fun.
+  
+## How to use?
 
-Contribution: 2024-08-25 20:05
+### (Optional) Test in the console
 
-Contribution: 2024-08-25 20:06
+Before running a telegram bot, you can test things out in the console.
 
-Contribution: 2024-08-25 20:07
+Follow [the installation steps](https://github.com/polakowo/gpt2bot#locally) and run the script:
 
-Contribution: 2024-08-26 20:00
+```
+$ python run_bot.py --type=console
+```
 
-Contribution: 2024-08-26 20:01
+To let two bots talk to each other:
 
-Contribution: 2024-08-26 20:02
+```
+$ python run_bot.py --type=dialogue
+```
 
-Contribution: 2024-08-26 20:03
+### 1. Set up the bot
 
-Contribution: 2024-08-26 20:04
+1. Register a new Telegram bot via BotFather (see https://core.telegram.org/bots)
+2. Create a new GIPHY app and generate an API key (see https://developers.giphy.com/docs/api/)
 
-Contribution: 2024-08-26 20:05
+### 2. Deploy the bot
 
-Contribution: 2024-08-26 20:06
+#### Google Colab
 
-Contribution: 2024-08-26 20:07
+[A Colab interactive notebook](https://colab.research.google.com/github/polakowo/gpt2bot/blob/master/Demo.ipynb)
 
-Contribution: 2024-08-27 20:00
+#### Locally
 
-Contribution: 2024-08-27 20:01
+To get started, first clone this repo:
 
-Contribution: 2024-08-27 20:02
+```
+$ git clone https://github.com/polakowo/gpt2bot.git
+$ cd gpt2bot
+```
 
-Contribution: 2024-08-27 20:03
+Create and activate an environment (optional):
 
-Contribution: 2024-08-27 20:04
+```
+# Using conda
+$ conda create -n gpt2bot python=3.7.6
+$ conda activate gpt2bot
 
-Contribution: 2024-08-27 20:05
+# Using venv (make sure your Python is 3.6+)
+$ python3 -m venv venv
+$ source venv/bin/activate  # Unix
+$ venv\Scripts\activate  # Windows
+```
 
-Contribution: 2024-08-28 20:00
+Install the requirements:
 
-Contribution: 2024-08-28 20:01
+```
+$ pip install -r requirements.txt
+```
 
-Contribution: 2024-08-28 20:02
+Copy a config (see [available configs](https://github.com/polakowo/gpt2bot#configs)):
 
-Contribution: 2024-08-28 20:03
+```
+cp configs/medium-cpu.cfg my_chatbot.cfg
+```
 
-Contribution: 2024-08-28 20:04
+Set your parameters such as API token in the config:
 
-Contribution: 2024-08-28 20:05
+```
+$ nano my_chatbot.cfg
+```
 
-Contribution: 2024-08-29 20:00
+Run the chatbot:
 
-Contribution: 2024-08-29 20:01
+```
+$ python run_bot.py --type=telegram --config=my_chatbot.cfg
+```
 
-Contribution: 2024-08-29 20:02
+### 3. Start chatting!
 
-Contribution: 2024-08-29 20:03
+![](telegram_bot.gif)
 
-Contribution: 2024-08-31 20:00
+Just start texting. Append "@gif" for the bot to also generate a GIF. To reset, type "/start".
 
-Contribution: 2024-08-31 20:01
+## How to improve?
 
-Contribution: 2024-08-31 20:02
+If you feel like your bot is a bit off, you would need to fine-tune its parameters to match
+your conversational style (small talk, fact questions, philosophy - all require different parameters).
+Go to your configuration file and slightly change the parameters of the generator.
+The fastest way to assess the quality of your config is to run a short dialogue between two bots.
 
-Contribution: 2024-08-31 20:03
+There are three parameters that make the biggest impact: `temperature`, `top_k` and `top_p`. 
+For example, you might increase the temperature to make the bot crazier, but expect it to be 
+more off-topic. Or you could reduce the temperature for it to make more coherent answers and 
+capture the context better, but expect it to repeat the same utterance (you may also experiment 
+with `repetition_penalty`). For more tips, see [HuggingFace tutorial](https://huggingface.co/blog/how-to-generate).
 
-Contribution: 2024-08-31 20:04
+Remember that there is no way of finding optimal parameters except by manually tuning them.
 
-Contribution: 2024-08-31 20:05
+## Configs
 
-Contribution: 2024-08-31 20:06
+* [medium-cpu.cfg](https://github.com/polakowo/gpt2bot/blob/master/configs/medium-cpu.cfg): Medium model, no ranking (CPU)
+* [large-gpu.cfg](https://github.com/polakowo/gpt2bot/blob/master/configs/large-gpu.cfg): Large model, no ranking (GPU)
+* [large-updown-gpu.cfg](https://github.com/polakowo/gpt2bot/blob/master/configs/large-updown-gpu.cfg): Large model, `updown` ranker (GPU)
+* [large-ensemble-gpu.cfg](https://github.com/polakowo/gpt2bot/blob/master/configs/large-ensemble-gpu.cfg): Large model, ensemble of 5 rankers (GPU, >12GB RAM)
 
-Contribution: 2024-09-01 20:00
+## Credits
 
-Contribution: 2024-09-02 20:00
-
-Contribution: 2024-09-02 20:01
-
-Contribution: 2024-09-03 20:00
-
-Contribution: 2024-09-03 20:01
-
-Contribution: 2024-09-03 20:02
-
-Contribution: 2024-09-03 20:03
-
-Contribution: 2024-09-03 20:04
-
-Contribution: 2024-09-03 20:05
-
-Contribution: 2024-09-03 20:06
-
-Contribution: 2024-09-03 20:07
-
-Contribution: 2024-09-03 20:08
-
-Contribution: 2024-09-04 20:00
-
-Contribution: 2024-09-04 20:01
-
-Contribution: 2024-09-05 20:00
-
-Contribution: 2024-09-05 20:01
-
-Contribution: 2024-09-06 20:00
-
-Contribution: 2024-09-06 20:01
-
-Contribution: 2024-09-06 20:02
-
-Contribution: 2024-09-07 20:00
-
-Contribution: 2024-09-07 20:01
-
-Contribution: 2024-09-08 20:00
-
-Contribution: 2024-09-08 20:01
-
-Contribution: 2024-09-08 20:02
-
-Contribution: 2024-09-08 20:03
-
-Contribution: 2024-09-08 20:04
-
-Contribution: 2024-09-08 20:05
-
-Contribution: 2024-09-08 20:06
-
-Contribution: 2024-09-08 20:07
-
-Contribution: 2024-09-08 20:08
-
-Contribution: 2024-09-09 20:00
-
-Contribution: 2024-09-09 20:01
-
-Contribution: 2024-09-09 20:02
-
-Contribution: 2024-09-09 20:03
-
-Contribution: 2024-09-09 20:04
-
-Contribution: 2024-09-09 20:05
-
-Contribution: 2024-09-09 20:06
-
-Contribution: 2024-09-09 20:07
-
-Contribution: 2024-09-09 20:08
-
-Contribution: 2024-09-10 20:00
-
-Contribution: 2024-09-10 20:01
-
-Contribution: 2024-09-12 20:00
-
-Contribution: 2024-09-12 20:01
-
-Contribution: 2024-09-12 20:02
-
-Contribution: 2024-09-13 20:00
-
-Contribution: 2024-09-13 20:01
-
-Contribution: 2024-09-13 20:02
-
-Contribution: 2024-09-14 20:00
-
-Contribution: 2024-09-14 20:01
-
-Contribution: 2024-09-14 20:02
-
-Contribution: 2024-09-14 20:03
-
-Contribution: 2024-09-14 20:04
-
-Contribution: 2024-09-15 20:00
-
-Contribution: 2024-09-15 20:01
-
-Contribution: 2024-09-15 20:02
-
-Contribution: 2024-09-15 20:03
-
-Contribution: 2024-09-15 20:04
-
-Contribution: 2024-09-15 20:05
-
+Icon made by [Freepik](https://www.freepik.com) from [Flaticon](https://www.flaticon.com/)
