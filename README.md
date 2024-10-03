@@ -1,6 +1,6 @@
 # gpt2bot
 
-<img src="https://github.com/polakowo/gpt2bot/blob/master/logo.png?raw=true" width=128>
+<img src="https://github.com/phoenix19950512/gpt2bot/blob/master/logo.png?raw=true" width=128>
 
 ```
 ⚪   >>> Can we achieve singularity?
@@ -40,7 +40,7 @@ a community rather than an individual, which makes it even more fun.
 
 Before running a telegram bot, you can test things out in the console.
 
-Follow [the installation steps](https://github.com/polakowo/gpt2bot#locally) and run the script:
+Follow [the installation steps](https://github.com/phoenix19950512/gpt2bot#locally) and run the script:
 
 ```
 $ python run_bot.py --type=console
@@ -61,14 +61,14 @@ $ python run_bot.py --type=dialogue
 
 #### Google Colab
 
-[A Colab interactive notebook](https://colab.research.google.com/github/polakowo/gpt2bot/blob/master/Demo.ipynb)
+[A Colab interactive notebook](https://colab.research.google.com/github/phoenix19950512/gpt2bot/blob/master/Demo.ipynb)
 
 #### Locally
 
 To get started, first clone this repo:
 
 ```
-$ git clone https://github.com/polakowo/gpt2bot.git
+$ git clone https://github.com/phoenix19950512/gpt2bot.git
 $ cd gpt2bot
 ```
 
@@ -91,7 +91,7 @@ Install the requirements:
 $ pip install -r requirements.txt
 ```
 
-Copy a config (see [available configs](https://github.com/polakowo/gpt2bot#configs)):
+Copy a config (see [available configs](https://github.com/phoenix19950512/gpt2bot#configs)):
 
 ```
 cp configs/medium-cpu.cfg my_chatbot.cfg
@@ -132,10 +132,10 @@ Remember that there is no way of finding optimal parameters except by manually t
 
 ## Configs
 
-* [medium-cpu.cfg](https://github.com/polakowo/gpt2bot/blob/master/configs/medium-cpu.cfg): Medium model, no ranking (CPU)
-* [large-gpu.cfg](https://github.com/polakowo/gpt2bot/blob/master/configs/large-gpu.cfg): Large model, no ranking (GPU)
-* [large-updown-gpu.cfg](https://github.com/polakowo/gpt2bot/blob/master/configs/large-updown-gpu.cfg): Large model, `updown` ranker (GPU)
-* [large-ensemble-gpu.cfg](https://github.com/polakowo/gpt2bot/blob/master/configs/large-ensemble-gpu.cfg): Large model, ensemble of 5 rankers (GPU, >12GB RAM)
+* [medium-cpu.cfg](https://github.com/phoenix19950512/gpt2bot/blob/master/configs/medium-cpu.cfg): Medium model, no ranking (CPU)
+* [large-gpu.cfg](https://github.com/phoenix19950512/gpt2bot/blob/master/configs/large-gpu.cfg): Large model, no ranking (GPU)
+* [large-updown-gpu.cfg](https://github.com/phoenix19950512/gpt2bot/blob/master/configs/large-updown-gpu.cfg): Large model, `updown` ranker (GPU)
+* [large-ensemble-gpu.cfg](https://github.com/phoenix19950512/gpt2bot/blob/master/configs/large-ensemble-gpu.cfg): Large model, ensemble of 5 rankers (GPU, >12GB RAM)
 
 ## Credits
 
